@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3f4f0">
+<title>校招雷达 · 27届求职信息聚合</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f4f0; --panel:#fcfdfa;
+  --ink:#2f302b; --ink2:#585a50; --dim:#83857a; --faint:#a7a89d;
+  --line:#e7e8e1; --line2:#d9dbd1;
+  --acc:#6b7d5e; --acc-h:#586849; --acc-soft:#edf0e8;
+  --green:#5f7250; --green-soft:#eaeee4;
+  --amber:#9c7f3f; --amber-soft:#f3edde;
+  --rose:#a06673; --rose-soft:#f4ebed;
+  --r:16px; --rs:10px;
+  --shadow:0 1px 2px rgba(47,48,43,.04), 0 4px 16px rgba(47,48,43,.05);
+  --shadow-h:0 2px 6px rgba(47,48,43,.06), 0 10px 30px rgba(107,125,94,.12);
+}
+.cheer{max-width:1160px;margin:18px auto 0;padding:14px 20px;display:flex;align-items:center;gap:12px;
+  background:linear-gradient(100deg,#f4ebed,#eef0e8);border:1px solid #e7e2dc;border-radius:14px;
+  color:#5a4a4d;font-size:14.5px;line-height:1.6;cursor:pointer;transition:box-shadow .2s,opacity .18s;
+  box-shadow:0 1px 2px rgba(47,48,43,.04)}
+.cheer:hover{box-shadow:0 4px 16px rgba(160,102,115,.13)}
+.cheer::before{content:"🌸";font-size:20px;flex:0 0 auto}
+.cheer b{color:#a06673;font-weight:700}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);
+  font:15px/1.55 "Noto Sans SC",-apple-system,system-ui,"Segoe UI",sans-serif;min-height:100dvh}
+
+header{position:sticky;top:0;z-index:30;background:rgba(252,253,250,.88);
+  backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+.head-inner{max-width:1160px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 14px) 20px 0}
+.brand{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.logo{width:34px;height:34px;border-radius:10px;flex:none;
+  background:linear-gradient(135deg,#c88a5e,#b06f42);display:grid;place-items:center;
+  box-shadow:0 3px 10px rgba(176,111,66,.30)}
+.logo svg{width:19px;height:19px;stroke:#fff;stroke-width:2.4;fill:none}
+.brand-txt h1{font-family:"Manrope";font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.brand-txt .tag{font-size:12px;color:var(--dim);margin-top:2px}
+.upd{margin-left:auto;text-align:right;font-size:11px;color:var(--faint);line-height:1.4;white-space:nowrap}
+.upd b{color:var(--ink2);font-weight:600}
+
+.search{position:relative;margin-bottom:13px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--faint);stroke-width:2;fill:none}
+.search input{width:100%;background:var(--bg);border:1.5px solid var(--line2);border-radius:12px;
+  color:var(--ink);font-size:15px;padding:12px 14px 12px 42px;outline:none;transition:.15s;font-family:inherit}
+.search input:focus{border-color:var(--acc);background:#fff;box-shadow:0 0 0 4px var(--acc-soft)}
+.search input::placeholder{color:var(--faint)}
+
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:14px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:none;display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:20px;
+  border:1.5px solid var(--line2);background:var(--panel);color:var(--ink2);font-size:13.5px;font-weight:600;
+  cursor:pointer;white-space:nowrap;transition:.15s;user-select:none;font-family:inherit}
+.chip:hover{border-color:var(--acc);color:var(--acc)}
+.chip:active{transform:scale(.96)}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.chip.on.net{background:var(--green);border-color:var(--green)}
+select.chip{-webkit-appearance:none;appearance:none;padding-right:30px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2383857a' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center}
+
+.countbar{max-width:1160px;margin:0 auto;padding:16px 20px 2px;display:flex;align-items:center;gap:9px;
+  font-size:13px;color:var(--dim);flex-wrap:wrap}
+.countbar b{color:var(--ink);font-weight:700}
+.dotsep{width:3px;height:3px;border-radius:50%;background:var(--line2)}
+
+main{max-width:1160px;margin:0 auto;padding:10px 20px 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;align-items:stretch}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);
+  padding:18px 18px 16px;display:flex;flex-direction:column;position:relative;transition:.18s;min-height:212px}
+.card:hover{box-shadow:var(--shadow-h);border-color:var(--line2);transform:translateY(-2px)}
+.card.applied{opacity:.62}
+.card.applied .co{text-decoration:line-through;text-decoration-color:var(--faint)}
+
+.card-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:11px}
+.co{font-family:"Manrope","Noto Sans SC";font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.3;
+  color:var(--ink);flex:1;min-width:0;word-break:break-word;padding-top:1px}
+.star{flex:none;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;cursor:pointer;
+  background:transparent;transition:.15s;margin:-4px -4px 0 0}
+.star:hover{background:var(--amber-soft)}
+.star svg{width:19px;height:19px;stroke:var(--faint);stroke-width:1.7;fill:none;transition:.15s}
+.star.on svg{stroke:var(--amber);fill:var(--amber)}
+
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.b{font-size:11px;font-weight:700;padding:3px 9px;border-radius:7px;line-height:1.5}
+.b-net{background:var(--green-soft);color:var(--green)}
+.b-hot{background:#ede3d0;color:#9a6528}
+.b-intern{background:#e6ecf1;color:#5a7688}
+.b-new{background:var(--rose-soft);color:var(--rose)}
+.b-cohort{background:var(--acc-soft);color:var(--acc)}
+.b-ind{background:#eef0ea;color:var(--ink2)}
+.b-exp{background:#eef0ea;color:var(--dim);border:1px dashed var(--line2)}
+
+.info{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;flex:1}
+.row{display:flex;align-items:flex-start;gap:7px;font-size:13px;color:var(--ink2);line-height:1.45}
+.row svg{width:14px;height:14px;stroke:var(--faint);stroke-width:1.8;fill:none;flex:none;margin-top:2px}
+.row .clamp{min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+.row.dl-soon{color:var(--amber);font-weight:600}
+.row.dl-soon svg{stroke:var(--amber)}
+.row.dl-urgent{color:var(--rose);font-weight:700}
+.row.dl-urgent svg{stroke:var(--rose)}
+
+.actions{display:flex;gap:8px;margin-top:auto}
+.apply{flex:1 1 auto;min-width:0;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  background:var(--acc);color:#fff;font-size:14px;font-weight:700;padding:10px;border-radius:var(--rs);
+  text-decoration:none;transition:.15s;font-family:inherit;border:none;cursor:pointer}
+.apply:hover{background:var(--acc-h)}
+.apply:active{transform:translateY(1px)}
+.apply svg{width:15px;height:15px;stroke:#fff;stroke-width:2.2;fill:none}
+.apply.na{background:#eef0ea;color:var(--faint);pointer-events:none}
+.done-btn{flex:none;display:inline-flex;align-items:center;gap:5px;padding:10px 13px;border-radius:var(--rs);
+  border:1.5px solid var(--line2);background:var(--panel);color:var(--ink2);font-size:13px;font-weight:600;
+  cursor:pointer;transition:.15s;font-family:inherit;white-space:nowrap}
+.done-btn:hover{border-color:var(--green);color:var(--green)}
+.done-btn:active{transform:translateY(1px)}
+.done-btn.on{background:var(--green-soft);border-color:transparent;color:var(--green)}
+.done-btn svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.4;fill:none}
+
+.empty{grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--faint)}
+.empty svg{width:46px;height:46px;stroke:var(--line2);stroke-width:1.5;fill:none;margin-bottom:16px}
+.empty div{font-size:15px}
+.skel{min-height:212px;border-radius:var(--r);border:1px solid var(--line);
+  background:linear-gradient(100deg,#fcfdfa 30%,#ecedE5 50%,#fcfdfa 70%);background-size:200% 100%;animation:sh 1.3s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+
+footer{max-width:1160px;margin:0 auto;padding:0 20px 40px;text-align:center;color:var(--faint);font-size:12px;line-height:1.7}
+
+@media(max-width:640px){
+  .head-inner,.countbar,main,footer{padding-left:14px;padding-right:14px}
+  .grid{grid-template-columns:1fr;gap:12px}
+  .card{min-height:0;padding:16px}
+  .upd{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24"><path d="M2 12h4l3 8 4-16 3 8h6"/></svg></div>
+      <div class="brand-txt">
+        <h1>校招雷达</h1>
+        <div class="tag">27届求职信息聚合 · 互联网优先 · 每日自动更新</div>
+      </div>
+      <div class="upd" id="upd"></div>
+    </div>
+    <div class="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      <input type="text" id="q" placeholder="搜公司、岗位、行业…" autocomplete="off">
+    </div>
+    <div class="filters">
+      <span class="chip on net" id="fNet">🌐 只看互联网</span>
+      <span class="chip" id="fHot">🔥 27秋招</span>
+      <span class="chip" id="fApply">✅ 可投递</span>
+      <span class="chip" id="fNew">🆕 近3天</span>
+      <span class="chip" id="fStar">⭐ 收藏</span>
+      <span class="chip" id="fTodo">📋 未投</span>
+      <select class="chip" id="sort">
+        <option value="smart">智能排序（27秋招优先）</option>
+        <option value="deadline">按截止时间</option>
+        <option value="new">最新收录</option>
+        <option value="company">公司名</option>
+      </select>
+      <select class="chip" id="industry"><option value="">全部行业</option></select>
+      <select class="chip" id="cohort"><option value="">全部届别</option></select>
+      <select class="chip" id="batch"><option value="">全部批次</option></select>
+    </div>
+  </div>
+</header>
+
+<div class="cheer" id="cheer" onclick="rollCheer()" title="点我换一句"></div>
+<div class="countbar" id="countbar"></div>
+<main><div class="grid" id="grid"></div></main>
+<footer id="footer"></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let DATA=[],FACETS={},state={net:true,hot:false,apply:false,new:false,star:false,todo:false};
+// 静态模式：部署在 GitHub Pages 等无后端环境时，数据走 data.json，标记走 localStorage
+let STATIC=!(location.hostname==='127.0.0.1'||location.hostname==='localhost');
+let ALL=[];
+const LS_MARKS='xz_marks';
+const MARKS=(()=>{try{return JSON.parse(localStorage.getItem(LS_MARKS)||'{}')}catch(e){return{}}})();
+function saveMark(key,field,val){(MARKS[key]=MARKS[key]||{})[field]=val;try{localStorage.setItem(LS_MARKS,JSON.stringify(MARKS))}catch(e){}}
+
+const daysTo=d=>{if(!d)return null;const x=new Date(d);if(isNaN(x))return null;return Math.round((x-new Date(new Date().toDateString()))/864e5)};
+const isRecent=d=>{if(!d)return false;return (new Date()-new Date(d))/864e5<=3};
+
+const IC={
+  pin:'<svg viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+  cal:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>',
+  layer:'<svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg>',
+  ext:'<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13v6a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h6"/></svg>',
+  check:'<svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>',
+  star:'<svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .9-5 4.8 1.3 7L12 18l-6.6 3.2L6.7 14l-5-4.8 7-.9z"/></svg>',
+  empty:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>'
+};
+
+async function loadFacets(){
+  if(!STATIC){
+    try{
+      const rsp=await fetch('/api/facets');
+      if(!rsp.ok)throw 0;
+      FACETS=await rsp.json();
+    }catch(e){STATIC=true}
+  }
+  if(STATIC){
+    const d=await (await fetch('data.json?v='+Date.now())).json();
+    ALL=d.jobs;FACETS=d.facets;
+    ALL.forEach(r=>{const m=MARKS[r.key];if(m){if('applied'in m)r.applied=m.applied;if('starred'in m)r.starred=m.starred;}});
+  }
+  fill('industry',FACETS.industry);fill('cohort',FACETS.cohort);fill('batch',FACETS.batch);
+  $('upd').innerHTML=`更新于<br><b>${FACETS.last_update}</b>`;
+  $('footer').innerHTML=`共收录 ${FACETS.total} 个岗位 · 数据来自公开校招聚合源，每日自动更新<br>仅作信息汇总参考，投递请以企业官方页面为准`;
+}
+function fill(id,arr){const s=$(id);[...s.querySelectorAll('option:not(:first-child)')].forEach(o=>o.remove());
+  arr.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;s.appendChild(o)})}
+
+function staticQuery(){
+  const qv=$('q').value.trim().toLowerCase();
+  let rows=ALL.filter(r=>{
+    if(qv && !['company','positions','notes','industry'].some(k=>(r[k]||'').toLowerCase().includes(qv)))return false;
+    for(const k of['industry','cohort','batch']){if($(k).value && r[k]!==$(k).value)return false}
+    if(state.net && !r.is_net)return false;
+    if(state.hot && !(r.cohort==='2027届'&&(r.batch==='正式批'||r.batch==='提前批')))return false;
+    if(state.apply && !r.can_apply)return false;
+    if(state.todo && r.applied)return false;
+    return true;
+  });
+  const s=$('sort').value,cmp=(a,b)=>(a.company||'').localeCompare(b.company||'');
+  if(s==='new')rows.sort((a,b)=>(b.first_seen||'').localeCompare(a.first_seen||'')||cmp(a,b));
+  else if(s==='deadline')rows.sort((a,b)=>((a.deadline?0:1)-(b.deadline?0:1))||(a.deadline||'').localeCompare(b.deadline||'')||cmp(a,b));
+  else if(s==='company')rows.sort(cmp);
+  else rows.sort((a,b)=>a.fresh_rank-b.fresh_rank||a.tier-b.tier||(b.can_apply-a.can_apply)||((a.deadline?0:1)-(b.deadline?0:1))||cmp(a,b));
+  return rows;
+}
+async function load(){
+  if(STATIC){DATA=staticQuery();render();return}
+  const p=new URLSearchParams();
+  if($('q').value)p.set('q',$('q').value);
+  ['industry','cohort','batch'].forEach(k=>{if($(k).value)p.set(k,$(k).value)});
+  p.set('sort',$('sort').value);
+  if(state.net)p.set('net','1');
+  if(state.hot)p.set('hot','1');
+  if(state.apply)p.set('canapply','1');
+  if(state.todo)p.set('applied','0');
+  DATA=await (await fetch('/api/jobs?'+p)).json();
+  render();
+}
+function render(){
+  let rows=DATA;
+  if(state.new)rows=rows.filter(r=>isRecent(r.first_seen));
+  if(state.star)rows=rows.filter(r=>r.starred);
+  const nNet=rows.filter(r=>r.is_net).length, nApply=rows.filter(r=>r.can_apply).length;
+  $('countbar').innerHTML=`<b>${rows.length}</b> 个岗位<span class="dotsep"></span>🌐 ${nNet} 互联网<span class="dotsep"></span>✅ ${nApply} 可投递`;
+  if(!rows.length){$('grid').innerHTML=`<div class="empty">${IC.empty}<div>没有匹配的岗位，换个筛选试试</div></div>`;return}
+  $('grid').innerHTML=rows.map(card).join('');
+}
+function clean(t){return (t||'').replace(/https?:\/\/\S+/g,'').trim()}
+function card(r){
+  const dt=daysTo(r.deadline);
+  const canApply=!!r.can_apply;
+  let dlRow='';
+  if(!canApply && r.status==='expected'){
+    dlRow=`<div class="row">${IC.cal}<span>预计开放 ${esc(r.deadline)||'待定'}</span></div>`;
+  }else if(r.deadline){
+    let cls='',suf='';
+    if(dt!==null){if(dt<0)suf=' · 已截止';else if(dt===0){cls='dl-urgent';suf=' · 今天截止'}else if(dt<=3){cls='dl-urgent';suf=` · 剩${dt}天`}else if(dt<=7){cls='dl-soon';suf=` · 剩${dt}天`}else suf=` · 剩${dt}天`}
+    dlRow=`<div class="row ${cls}">${IC.cal}<span>${esc(r.deadline)}${suf}</span></div>`;
+  }
+  let detail=clean(r.positions);
+  if(!detail){let n=clean(r.notes||r.note);if(n){if(n.length>60)n=n.slice(0,60)+'…';detail=n}}
+  const isHot=(r.cohort==='2027届' && !r.is_intern && (r.batch==='正式批'||r.batch==='提前批'));
+  const badges=[
+    isHot?`<span class="b b-hot">🔥 27秋招</span>`:'',
+    r.is_intern?`<span class="b b-intern">🌞 暑期实习</span>`:'',
+    r.is_net?`<span class="b b-net">互联网</span>`:'',
+    isRecent(r.first_seen)?`<span class="b b-new">NEW</span>`:'',
+    (r.status==='expected' && !canApply)?`<span class="b b-exp">未开放</span>`:'',
+    r.cohort?`<span class="b b-cohort">${esc(r.cohort)}</span>`:'',
+    r.industry?`<span class="b b-ind">${esc(r.industry)}</span>`:'',
+    (r.batch && !r.is_intern)?`<span class="b b-ind">${esc(r.batch)}</span>`:'',
+  ].filter(Boolean).join('');
+  return `<div class="card ${r.applied?'applied':''}">
+    <div class="card-head">
+      <div class="co">${esc(r.company)}</div>
+      <div class="star ${r.starred?'on':''}" onclick="mark('${r.key}','starred',${r.starred?0:1})">${IC.star}</div>
+    </div>
+    <div class="badges">${badges}</div>
+    <div class="info">
+      ${dlRow}
+      ${r.locations?`<div class="row">${IC.pin}<span>${esc(r.locations)}</span></div>`:''}
+      ${detail?`<div class="row">${IC.layer}<span class="clamp">${esc(detail)}</span></div>`:''}
+    </div>
+    <div class="actions">
+      ${r.apply_url?`<a class="apply" href="${esc(r.apply_url)}" target="_blank" rel="noopener">${IC.ext}投递</a>`:(canApply?`<a class="apply" href="${r.official_url?esc(r.official_url):'https://www.google.com/search?q='+encodeURIComponent(r.company+' 2027校招官网')}" target="_blank" rel="noopener">${IC.ext}去官网</a>`:`<span class="apply na">暂无入口</span>`)}
+      ${(r.official_url && r.apply_url && r.official_url!==r.apply_url)?`<a class="done-btn" style="text-decoration:none" href="${esc(r.official_url)}" target="_blank" rel="noopener">官网</a>`:''}
+      <button class="done-btn ${r.applied?'on':''}" onclick="mark('${r.key}','applied',${r.applied?0:1})">${IC.check}${r.applied?'已投':'标记'}</button>
+    </div>
+  </div>`;
+}
+async function mark(key,field,val){
+  if(STATIC){saveMark(key,field,val?1:0)}
+  else{await fetch('/api/mark',{method:'POST',body:JSON.stringify({key,[field]:val?1:0})})}
+  const r=(STATIC?ALL:DATA).find(x=>x.key===key);if(r)r[field]=val?1:0;
+  if(STATIC)DATA=staticQuery();
+  render();
+}
+const toggle=(id,key)=>{$(id).onclick=()=>{state[key]=!state[key];$(id).classList.toggle('on');load()}};
+toggle('fNet','net');toggle('fHot','hot');toggle('fApply','apply');toggle('fNew','new');toggle('fStar','star');toggle('fTodo','todo');
+['q','industry','cohort','batch','sort'].forEach(k=>$(k).addEventListener($(k).tagName==='INPUT'?'input':'change',load));
+$('grid').innerHTML='<div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div>';
+const CHEERS=[
+  "别急，好工作从来不是抢来的，是等对了人的 —— 你值得被认真挑中。<b>慢慢来，会很快。</b>",
+  "投出去的每一份简历都不会白费，它们在替未来的你敲门。<b>你已经在路上了。</b>",
+  "没有回音的日子最难熬，但沉默不代表否定，只是还没轮到那个对的它。<b>沉住气。</b>",
+  "27届的秋招才刚刚开场，好戏都在后头。<b>你还有大把机会，一个都不会少。</b>",
+  "焦虑是因为在乎，说明你认真对待自己的人生 —— 这本身就很了不起。<b>温柔点对自己。</b>",
+  "面试被拒不是你不够好，只是那家公司没这个福气。<b>下一个会更懂你。</b>",
+  "你现在觉得难走的路，回头看都是通往好结果的必经之地。<b>撑住，快到了。</b>",
+  "求职是一场马拉松，不是百米冲刺。<b>不必和别人比速度，你有自己的节奏。</b>",
+  "记得吃饭、睡够觉、偶尔偷个懒 —— 状态好，运气才追得上你。<b>先照顾好自己。</b>",
+  "那个能一眼看见你闪光点的 offer，正在赶来的路上。<b>再等它一下下。</b>",
+  "你不是一个人在找工作，这个小站每天都在帮你盯着机会。<b>累了就来看看。</b>",
+  "投得多不如投得准，你已经在认真挑对的方向了。<b>相信自己的判断。</b>",
+  "今天没消息，不代表明天没惊喜。<b>好运往往在你快放弃时才登场。</b>",
+  "毕业不是终点考核，是人生第一次自己选路。<b>选错了也能改，别怕。</b>",
+  "你比自己想象的更抗打、更有本事。<b>面试官会看见的，早晚而已。</b>",
+  "把每次面试当成免费的练习，赢了赚经验，'输'了也赚经验。<b>你稳赚不赔。</b>",
+  "深呼吸。此刻的迷茫，一年后回看只是一个小小的过场。<b>未来的你会感谢现在坚持的你。</b>",
+  "好工作会找到你，就像对的人终会遇见 —— 前提是你没停下脚步。<b>继续往前，就好。</b>",
+];
+function rollCheer(){
+  const el=$('cheer'); if(!el) return;
+  let i=Math.floor(Math.random()*CHEERS.length);
+  if(el.dataset.i!=null && CHEERS.length>1){while(i==+el.dataset.i)i=Math.floor(Math.random()*CHEERS.length);}
+  el.dataset.i=i; el.style.opacity=0;
+  setTimeout(()=>{el.innerHTML=CHEERS[i]; el.style.opacity=1;},120);
+}
+rollCheer();
+loadFacets().then(load);
+</script>
+</body>
+</html>
