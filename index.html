@@ -27,6 +27,7 @@
   box-shadow:0 1px 2px rgba(47,48,43,.04)}
 .cheer:hover{box-shadow:0 4px 16px rgba(160,102,115,.13)}
 .cheer::before{content:"🌸";font-size:20px;flex:0 0 auto}
+.cheer>span{flex:1;min-width:0}
 .cheer b{color:#a06673;font-weight:700}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
@@ -344,7 +345,7 @@ function rollCheer(){
   let i=Math.floor(Math.random()*CHEERS.length);
   if(el.dataset.i!=null && CHEERS.length>1){while(i==+el.dataset.i)i=Math.floor(Math.random()*CHEERS.length);}
   el.dataset.i=i; el.style.opacity=0;
-  setTimeout(()=>{el.innerHTML=CHEERS[i]; el.style.opacity=1;},120);
+  setTimeout(()=>{el.innerHTML='<span>'+CHEERS[i]+'</span>'; el.style.opacity=1;},120);
 }
 rollCheer();
 loadFacets().then(load);
